@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Container from 'react-bootstrap/Container';
+import * as d from './DisplayTypes';
+import SplashPage from './SplashPage';
 
 function DrinkControl() {
-  return(
-    <React.Fragment>
+  const [page, setPage] = useState(d.SPLASH_PAGE);
 
-    </React.Fragment>
+  let pageToDisplay;
+  if (page === d.SPLASH_PAGE) {
+    pageToDisplay = <SplashPage />
+  }
+
+  return(
+    <Container fluid>
+      {pageToDisplay}
+    </Container>
   )
 }
 
