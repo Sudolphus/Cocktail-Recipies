@@ -6,6 +6,28 @@
   width: 20rem;
 }
 
-.cocktail-card h5.card-header, .big-cocktail-card h5.card-header {
+.header h1, .cocktail-card h5.card-header, .big-cocktail-card h5.card-header {
+  text-align: center;
+}
+
+.about-cocktails h3, .about-cocktails .row .col h5 {
+  text-align: center;
+}
+
+.card-footer {
+  position: absolute;
+  bottom: 5px;
+}
+
+.card-footer .copyright-footer h4 {
+  text-align: center;
+}
+
+.testimonials h3 {
+  text-align: center;
+  padding: 5%;
+}
+
+.carousel {
   text-align: center;
 }
