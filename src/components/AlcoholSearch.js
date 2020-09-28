@@ -5,18 +5,10 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CardColumns from 'react-bootstrap/CardColumns';
 import CocktailCard from './CocktailCard';
+import reducer from './../reducers/drinks-reducer';
+import * as a from './../actions/index';
 
 const initialState = { drinks: [] };
-
-function reducer(state, action) {
-  switch(action.type){
-    case 'add_drink':
-      const newDrink = [...state.drinks, action.drink];
-      return { drinks: newDrink };
-    default:
-      throw new Error('The reducer returned an error');
-  }
-}
 
 function AlcoholSearch() {
   const [isLoading, setIsLoading] = useState(false);
@@ -26,12 +18,13 @@ function AlcoholSearch() {
   const onSubmitForm = async (event) => {
     event.preventDefault();
     setIsLoading(true);
+    dispatch(a.resetState());
     const alcoholName = event.target.name.value;
     try {
       const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${alcoholName}`)
       const jsonResponse = await response.json();
       const alcoholResponse = jsonResponse.drinks;
-      alcoholResponse.map(drink => dispatch({type: 'add_drink', drink}));
+      alcoholResponse.map(drink => dispatch(a.addDrink(drink)));
     } catch(err) {
       setError(err.message);
     } finally {
