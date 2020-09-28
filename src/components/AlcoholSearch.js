@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CardColumns from 'react-bootstrap/CardColumns';
+import CocktailDetails from './CocktailDetails';
 import CocktailCard from './CocktailCard';
 import reducer from './../reducers/drinks-reducer';
 import * as a from './../actions/index';
@@ -13,6 +14,7 @@ const initialState = { drinks: [] };
 function AlcoholSearch() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [drink, setDrink] = useState(null);
   const [state, dispatch] = useReducer(reducer, initialState);
   
   const onSubmitForm = async (event) => {
@@ -37,10 +39,13 @@ function AlcoholSearch() {
     display = <p>Loading...</p>
   } else if (error) {
     display = <p>{error}</p>
+  } else if (drink) {
+    display = <><CocktailDetails id={drink} />
+    <Button type='button' variant='info' onClick={() => setDrink(null)}>Back To Full List</Button></>
   } else if (state.drinks.length > 0) {
     display = <><p>Number of Results: {state.drinks.length}</p>
     <CardColumns>
-      {state.drinks.map(cocktail => <CocktailCard key={cocktail['idDrink']} cocktail={cocktail} className='cocktail-card'/>)}
+      {state.drinks.map(cocktail => <div key={cocktail['idDrink']} onClick={()=>setDrink(cocktail['idDrink'])}><CocktailCard cocktail={cocktail} className='cocktail-card' /></div>)}
     </CardColumns></>
   }
   

@@ -1,7 +1,11 @@
+.big-cocktail-card {
+  width: 100vw;
+}
+
 .cocktail-card {
   width: 20rem;
 }
 
-.cocktail-card h5.card-header {
+.cocktail-card h5.card-header, .big-cocktail-card h5.card-header {
   text-align: center;
 }

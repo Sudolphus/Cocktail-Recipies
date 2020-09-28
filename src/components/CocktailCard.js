@@ -19,7 +19,7 @@ function CocktailCard(props) {
   }
 
   return (
-    <Card className='cocktail-card mb-3'>
+    <Card className='mb-3'>
       <Card.Header as='h5'>{strDrink}</Card.Header>
       <Card.Body>
         <ul>
