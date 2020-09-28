@@ -1,14 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import CardColumns from 'react-bootstrap/CardColumns';
 import CocktailCard from './CocktailCard';
+
+const initialState = { drinks: [] };
+
+function reducer(state, action) {
+  switch(action.type) {
+    case 'add_drink':
+      const newDrinks = [...state.drinks, action.drink];
+      return { drinks: newDrinks };
+    default:
+      throw new Error('The reducer returned an error');
+  }
+}
 
 function NameSearch() {
   const [isLoading, setIsLoading] = useState(false);
-  const [cocktailList, setCocktailList] = useState([]);
   const [error, setError] = useState(null);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const onSubmitForm = async (event) => {
     event.preventDefault();
@@ -18,25 +31,12 @@ function NameSearch() {
       const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktailName}`);
       const jsonResponse = await response.json();
       const drinksResponse = await jsonResponse.drinks;
-      drinksResponse.map(drink => {
-        const newCocktailList = cocktailList;
-        newCocktailList.push(drink);
-        console.log(newCocktailList);
-        return setCocktailList(newCocktailList);
-      })
+      drinksResponse.map(drink => dispatch({type: 'add_drink', drink}));
       setIsLoading(false);
     } catch(err) {
       setIsLoading(false);
       setError(err.message);
     }
-    // fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktailName}`)
-    //   .then(response => response.json())
-    //   .then(jsonResponse => setCocktailList(jsonResponse.results.drinks))
-    //   .then(setIsLoading(false))
-    //   .catch((err) => {
-    //     setIsLoading(false);
-    //     setError(err);
-    //   });
   }
 
   let display = null;
@@ -44,8 +44,11 @@ function NameSearch() {
     display = <p>Loading...</p>
   } else if (error) {
     display = <p>{error}</p>
-  } else if (cocktailList) {
-    display = cocktailList.map(cocktail => <CocktailCard key={cocktail['idDrink']} cocktail={cocktail} className='cocktail-card'/>)
+  } else if (state.drinks.length > 0) {
+    display = <><p>Number of Results: {state.drinks.length}</p>
+      <CardColumns>
+        {state.drinks.map(cocktail => <CocktailCard key={cocktail['idDrink']} cocktail={cocktail} className='cocktail-card'/>)}
+      </CardColumns></>
   }
 
   return (
