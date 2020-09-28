@@ -11,10 +11,10 @@ function DrinkControl() {
       <NavigationBar />
       <Router>
         <Switch>
-          <Route path="/">
+          <Route path="/" exact>
             <SplashPage />
           </Route>
-          <Route path="/name-search">
+          <Route path="/name-search" exact>
             <NameSearch />
           </Route>
         </Switch>
