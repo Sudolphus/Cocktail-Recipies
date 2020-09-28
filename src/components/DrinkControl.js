@@ -1,19 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
-import * as d from './DisplayTypes';
+import NavigationBar from './NavigationBar';
 import SplashPage from './SplashPage';
+import NameSearch from './NameSearch';
 
 function DrinkControl() {
-  const [page, setPage] = useState(d.SPLASH_PAGE);
-
-  let pageToDisplay;
-  if (page === d.SPLASH_PAGE) {
-    pageToDisplay = <SplashPage />
-  }
-
   return(
     <Container fluid>
-      {pageToDisplay}
+      <NavigationBar />
+      <Router>
+        <Switch>
+          <Route path="/">
+            <SplashPage />
+          </Route>
+          <Route path="/name-search">
+            <NameSearch />
+          </Route>
+        </Switch>
+      </Router>
     </Container>
   )
 }

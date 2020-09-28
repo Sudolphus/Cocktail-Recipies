@@ -1,1 +1,0 @@
-export const SPLASH_PAGE = "splash_page";
