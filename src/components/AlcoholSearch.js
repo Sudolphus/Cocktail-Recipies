@@ -9,29 +9,29 @@ import CocktailCard from './CocktailCard';
 const initialState = { drinks: [] };
 
 function reducer(state, action) {
-  switch(action.type) {
+  switch(action.type){
     case 'add_drink':
-      const newDrinks = [...state.drinks, action.drink];
-      return { drinks: newDrinks };
+      const newDrink = [...state.drinks, action.drink];
+      return { drinks: newDrink };
     default:
       throw new Error('The reducer returned an error');
   }
 }
 
-function NameSearch() {
+function AlcoholSearch() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  
   const onSubmitForm = async (event) => {
     event.preventDefault();
     setIsLoading(true);
-    const cocktailName = event.target.name.value;
+    const alcoholName = event.target.name.value;
     try {
-      const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktailName}`);
+      const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${alcoholName}`)
       const jsonResponse = await response.json();
-      const drinksResponse = await jsonResponse.drinks;
-      drinksResponse.map(drink => dispatch({type: 'add_drink', drink}));
+      const alcoholResponse = jsonResponse.drinks;
+      alcoholResponse.map(drink => dispatch({type: 'add_drink', drink}));
     } catch(err) {
       setError(err.message);
     } finally {
@@ -46,23 +46,23 @@ function NameSearch() {
     display = <p>{error}</p>
   } else if (state.drinks.length > 0) {
     display = <><p>Number of Results: {state.drinks.length}</p>
-      <CardColumns>
-        {state.drinks.map(cocktail => <CocktailCard key={cocktail['idDrink']} cocktail={cocktail} className='cocktail-card'/>)}
-      </CardColumns></>
+    <CardColumns>
+      {state.drinks.map(cocktail => <CocktailCard key={cocktail['idDrink']} cocktail={cocktail} className='cocktail-card'/>)}
+    </CardColumns></>
   }
-
-  return (
+  
+  return(
     <React.Fragment>
+      <h1>Search for cocktails made with a certain type of alcohol</h1>
       <Form onSubmit={onSubmitForm}>
-        <h2>Search Cocktails by Name</h2>
         <Row>
           <Col xs={9}>
-            <Form.Group controlId="name">
-              <Form.Control type='search' placeholder='Cocktail Name' />
+            <Form.Group controlId='name'>
+              <Form.Control type='search' placeholder="Alcohol type (e.g. Vodka, gin)"/>
             </Form.Group>
           </Col>
           <Col xs={3}>
-            <Button block variant='info' type='submit'>Search!</Button>
+            <Button type='submit' variant='info'>Search</Button>
           </Col>
         </Row>
       </Form>
@@ -71,4 +71,4 @@ function NameSearch() {
   )
 }
 
-export default NameSearch;
+export default AlcoholSearch;

@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import NavigationBar from './NavigationBar';
 import SplashPage from './SplashPage';
 import NameSearch from './NameSearch';
+import AlcoholSearch from './AlcoholSearch';
 
 function DrinkControl() {
   return(
@@ -16,6 +17,9 @@ function DrinkControl() {
           </Route>
           <Route path="/name-search" exact>
             <NameSearch />
+          </Route>
+          <Route path="/alcohol-search" exact>
+            <AlcoholSearch />
           </Route>
         </Switch>
       </Router>

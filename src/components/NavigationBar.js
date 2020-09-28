@@ -8,6 +8,7 @@ function NavigationBar() {
       <Nav className='mr-auto'>
         <Nav.Link href="/">Home</Nav.Link>
         <Nav.Link href="/name-search">Search By Drink Name</Nav.Link>
+        <Nav.Link href="/alcohol-search">Search By Alcohol</Nav.Link>
       </Nav>
     </Navbar>
   )
