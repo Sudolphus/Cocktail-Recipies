@@ -9,6 +9,7 @@ function NavigationBar() {
         <Nav.Link href="/">Home</Nav.Link>
         <Nav.Link href="/name-search">Search By Drink Name</Nav.Link>
         <Nav.Link href="/alcohol-search">Search By Alcohol</Nav.Link>
+        <Nav.Link href="/random-cocktail">Get Random Drink!</Nav.Link>
       </Nav>
     </Navbar>
   )
