@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { withFirebase } from '../Firebase';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
@@ -67,4 +68,4 @@ function SignUp(props) {
   );
 }
 
-export default SignUp;
+export default withFirebase(SignUp);

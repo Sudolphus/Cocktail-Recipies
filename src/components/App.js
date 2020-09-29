@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { withFirebase } from './Firebase';
 import DrinkControl from './DrinkControl';
 
-function App() {
+function App(props) {
+  const [authUser, setAuthUser] = useState(null);
+
+  props.firebase.auth.onAuthStateChanged(function(user) {
+    if (user) {
+      setAuthUser(user);
+    } else {
+      setAuthUser(null);
+    }
+  })
+
   return (
-    <DrinkControl />
+    <DrinkControl authUser={authUser} />
   );
 }
 
-export default App;
+export default withFirebase(App);
