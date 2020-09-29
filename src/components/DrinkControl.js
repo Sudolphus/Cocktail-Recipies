@@ -8,13 +8,12 @@ import RandomCocktail from './RandomCocktail';
 import AccountControl from './Account/AccountControl';
 import * as s from './SearchTypes';
 
-function DrinkControl(props) {
-  const { authUser } = props;
+function DrinkControl() {
 
   return(
     <Container fluid>
       <Router>
-        <NavigationBar authUser={authUser} />
+        <NavigationBar />
         <Switch>
           <Route path="/" exact>
             <SplashPage />

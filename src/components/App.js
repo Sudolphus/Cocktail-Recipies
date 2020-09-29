@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { withFirebase } from './Firebase';
+import AuthUserContext from './Session/index';
 import DrinkControl from './DrinkControl';
 
 function App(props) {
@@ -14,7 +15,9 @@ function App(props) {
   })
 
   return (
-    <DrinkControl authUser={authUser} />
+    <AuthUserContext.Provider value={authUser} >
+      <DrinkControl />
+    </AuthUserContext.Provider>
   );
 }
 

@@ -3,6 +3,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import SignOut from './Account/SignOut';
+import { withAuthContext } from './Session/index';
 
 function NavigationBar(props) {
   const { authUser } = props;
@@ -20,9 +21,11 @@ function NavigationBar(props) {
         </NavDropdown>
         <Nav.Link href="/random-cocktail" className='mr-auto'>Get Random Drink!</Nav.Link>
       </Nav>
-      {accountLink}
+      <Nav className='justify-content-end'>
+        {accountLink}
+      </Nav>
     </Navbar>
   )
 }
 
-export default NavigationBar;
+export default withAuthContext(NavigationBar);
