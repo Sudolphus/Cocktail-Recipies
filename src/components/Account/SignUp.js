@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function SignUp(props) {
+  const history = useHistory();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password1, setPassword1] = useState('');
@@ -21,6 +23,7 @@ function SignUp(props) {
         setPassword1('');
         setPassword2('');
         setError(null);
+        history.push("/")
       })
       .catch(error => setError(error));
   }
@@ -33,28 +36,28 @@ function SignUp(props) {
             type='text' 
             placeholder='User Name'
             value={username}
-            onChange={() => setUsername(this.value) } />
+            onChange={event => setUsername(event.target.value) } />
         </Form.Group>
         <Form.Group controlId='signupEmail'>
           <Form.Control 
             type='text' 
             placeholder='Email'
             value={email}
-            onChange={() => setEmail(this.value)} />
+            onChange={event => setEmail(event.target.value)} />
         </Form.Group>
         <Form.Group controlId='signupPassword'>
           <Form.Control 
             type='password' 
             placeholder='Password'
             value={password1}
-            onChange={() => setPassword1(this.value)} />
+            onChange={event => setPassword1(event.target.value)} />
         </Form.Group>
         <Form.Group controlId='signupPassword2'>
           <Form.Control 
             type='password' 
             placeholder='Confirm Password'
             value={password2}
-            onChange={() => setPassword2(this.value)} />
+            onChange={event => setPassword2(event.target.value)} />
         </Form.Group>
         <Button type='submit' variant='primary' disabled={isInvalid}>Sign Up</Button>
 
