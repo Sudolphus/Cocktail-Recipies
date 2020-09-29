@@ -14,6 +14,7 @@ function NavigationBar() {
           <NavDropdown.Item href="/letter-search">Search By First Letter</NavDropdown.Item>
         </NavDropdown>
         <Nav.Link href="/random-cocktail">Get Random Drink!</Nav.Link>
+        <Nav.Link href='/account'>Account</Nav.Link>
       </Nav>
     </Navbar>
   )

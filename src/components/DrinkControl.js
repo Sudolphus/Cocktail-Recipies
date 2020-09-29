@@ -5,6 +5,7 @@ import NavigationBar from './NavigationBar';
 import SplashPage from './SplashPage';
 import AlcoholSearch from './AlcoholSearch';
 import RandomCocktail from './RandomCocktail';
+import AccountControl from './Account/AccountControl';
 import * as s from './SearchTypes';
 
 function DrinkControl() {
@@ -27,6 +28,9 @@ function DrinkControl() {
           </Route>
           <Route path="/random-cocktail" exact>
             <RandomCocktail />
+          </Route>
+          <Route path="/account" exact>
+            <AccountControl />
           </Route>
         </Switch>
       </Router>
