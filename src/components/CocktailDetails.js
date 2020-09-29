@@ -32,7 +32,7 @@ function CocktailDetails(props) {
   } else if (error) {
     display = <p>{error}</p>
   } else if (drink) {
-    display = <CocktailCard cocktail={drink} className='big-cocktail-card' />
+    display = <CocktailCard cocktail={drink} cName={'big-cocktail-card'} />
   }
 
   return (

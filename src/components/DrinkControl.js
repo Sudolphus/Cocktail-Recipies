@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import NavigationBar from './NavigationBar';
 import SplashPage from './SplashPage';
-import NameSearch from './NameSearch';
 import AlcoholSearch from './AlcoholSearch';
 import RandomCocktail from './RandomCocktail';
+import * as s from './SearchTypes';
 
 function DrinkControl() {
   return(
@@ -17,10 +17,13 @@ function DrinkControl() {
             <SplashPage />
           </Route>
           <Route path="/name-search" exact>
-            <NameSearch />
+            <AlcoholSearch searchType={s.NAME} />
           </Route>
           <Route path="/alcohol-search" exact>
-            <AlcoholSearch />
+            <AlcoholSearch searchType={s.ALCOHOL} />
+          </Route>
+          <Route path="/letter-search" exact>
+            <AlcoholSearch searchType={s.LETTER} />
           </Route>
           <Route path="/random-cocktail" exact>
             <RandomCocktail />

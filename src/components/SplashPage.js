@@ -44,12 +44,12 @@ function SplashPage() {
               </Carousel>
             </div>
           </Card.Body>
+        </Card.ImgOverlay>
           <Card.Footer>
             <div className="copyright-footer">
               <h4>© Copyright 2020 Micheal Hansen, Ben Russell</h4>
             </div>
           </Card.Footer>
-        </Card.ImgOverlay>
       </Card>
     </React.Fragment>
   )

@@ -19,7 +19,7 @@ function CocktailCard(props) {
   }
 
   return (
-    <Card className='mb-3'>
+    <Card className='mb-3 {props.cName}'>
       <Card.Header as='h5'>{strDrink}</Card.Header>
       <Card.Body>
         <ul>
@@ -41,7 +41,8 @@ function CocktailCard(props) {
 }
 
 CocktailCard.propTypes = {
-  cocktail: PropTypes.object
+  cocktail: PropTypes.object,
+  cName: PropTypes.string
 }
 
 export default CocktailCard;
