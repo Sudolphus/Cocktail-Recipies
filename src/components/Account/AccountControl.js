@@ -14,7 +14,10 @@ function AccountControl() {
         </Card>
         <Card>
           <Card.Header><Card.Title as='h4'>Log In To Your Account</Card.Title></Card.Header>
-          <Card.Body><LogIn /></Card.Body>
+          <Card.Body>
+            <LogIn />
+            <a href='/forgot-password'>I forgot my password!</a>
+          </Card.Body>
         </Card>
       </CardDeck>
     </React.Fragment>

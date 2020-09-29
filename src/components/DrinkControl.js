@@ -6,6 +6,7 @@ import SplashPage from './SplashPage';
 import AlcoholSearch from './AlcoholSearch';
 import RandomCocktail from './RandomCocktail';
 import AccountControl from './Account/AccountControl';
+import PasswordForgot from './Account/PasswordForgot';
 import * as s from './SearchTypes';
 
 function DrinkControl() {
@@ -32,6 +33,9 @@ function DrinkControl() {
           </Route>
           <Route path="/account" exact>
             <AccountControl />
+          </Route>
+          <Route path='/forgot-password' exact>
+            <PasswordForgot />
           </Route>
         </Switch>
       </Router>
