@@ -18,13 +18,14 @@ function SignUp(props) {
     event.preventDefault();
     props.firebase
       .doCreateUserWithEmailAndPassword(email, password1)
-      .then(authUser => {
+      .then(result => result.user.updateProfile({displayName: username}))
+      .then(() => {
         setUsername('');
         setEmail('');
         setPassword1('');
         setPassword2('');
         setError(null);
-        history.push("/")
+        history.push("/");
       })
       .catch(error => setError(error));
   }

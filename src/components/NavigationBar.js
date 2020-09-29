@@ -8,6 +8,7 @@ import { withAuthContext } from './Session/index';
 function NavigationBar(props) {
   const { authUser } = props;
 
+  const userName = authUser ? <Nav.Link className='mr-auto'>{authUser.displayName}</Nav.Link> : null;
   const accountLink = authUser ? <Nav className='mr-auto'><SignOut /></Nav> : <Nav.Link href='/account' className='mr-auto'>Account</Nav.Link>;
 
   return (
@@ -22,6 +23,7 @@ function NavigationBar(props) {
         <Nav.Link href="/random-cocktail" className='mr-auto'>Get Random Drink!</Nav.Link>
       </Nav>
       <Nav className='justify-content-end'>
+        {userName}
         {accountLink}
       </Nav>
     </Navbar>
