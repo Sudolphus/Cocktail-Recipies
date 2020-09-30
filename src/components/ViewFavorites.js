@@ -3,6 +3,7 @@ import { withFirebase } from './Firebase';
 import withAuthorization from './Session/withAuthorization';
 import { compose } from 'recompose';
 import CardColumns from 'react-bootstrap/CardColumns';
+import Button from 'react-bootstrap/Button';
 import CocktailCard from './CocktailCard';
 
 const reducer = (state, action) => {
@@ -10,6 +11,9 @@ const reducer = (state, action) => {
     case 'add_drink':
       const newDrinks = [...state.drinks, action.drink];
       return {...state, drinks: newDrinks};
+    case 'delete_drink':
+      const deleteDrinks = state.drinks.filter(drink => drink.idDrink !== action.id);
+      return {...state, drinks: deleteDrinks};
     default:
       return state;
   }
@@ -37,19 +41,21 @@ function ViewFavorites(props) {
     }
   }, [user, props.firebase.db])
 
-  // const getFavorites = () => {
-  //   props.firebase.db.collection(user.email).get()
-  //     .then(querySnapshot => {
-  //       const favorites = querySnapshot.docs.map(doc => doc.data());
-  //       favorites.map(drink => dispatch({ type: 'add_drink', drink}));
-  //     });
-  // }
+  const deleteDrink = (id) => {
+    props.firebase.db.collection(user.email).doc(id).delete()
+      .then(dispatch({type: 'delete_drink', id }))
+  }
 
   return(
     <React.Fragment>
       <h1>Your Favorite Cocktails!</h1>
       <CardColumns>
-        {state.drinks.map(favorites => <CocktailCard key={favorites.idDrink} cocktail={favorites} cName='cocktail-card' />)}
+        {state.drinks.map((favorites, ind) =>
+          <div key={ind}>
+            <CocktailCard key={favorites.idDrink} cocktail={favorites} cName='cocktail-card' />
+            <Button type='button' variant="danger" onClick={() => deleteDrink(favorites.idDrink)} key={`button${favorites.idDrink}`}>Remove From Favorites</Button>
+          </div>
+        )}
       </CardColumns>
     </React.Fragment>
   )
