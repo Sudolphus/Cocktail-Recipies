@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
+import AddDrink from './AddDrink';
 
 function CocktailCard(props) {
   const { strDrink, strInstructions, strDrinkThumb } = props.cocktail;
@@ -35,6 +36,7 @@ function CocktailCard(props) {
       </Card.Body>
       <Card.Footer>
         <Card.Text>{strInstructions}</Card.Text>
+        <AddDrink drink={props.cocktail} />
       </Card.Footer>
     </Card>
   )
