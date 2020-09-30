@@ -1,6 +1,7 @@
 import React from 'react';
 import PasswordChange from './PasswordChange';
 import NameChange from './NameChange';
+import withAuthorization from './../Session/withAuthorization';
 
 function Profile() {
   return (
@@ -13,4 +14,6 @@ function Profile() {
   )
 }
 
-export default Profile;
+const condition = authUser => !!authUser;
+
+export default withAuthorization(condition)(Profile);
