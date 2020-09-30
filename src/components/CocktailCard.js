@@ -19,6 +19,8 @@ function CocktailCard(props) {
     return ingredients;
   }
 
+  const favoriteButton = props.cName === 'big-cocktail-card' ? <AddDrink drink={props.cocktail} /> : null;
+
   return (
     <Card className='mb-3 {props.cName}'>
       <Card.Header as='h5'>{strDrink}</Card.Header>
@@ -36,7 +38,7 @@ function CocktailCard(props) {
       </Card.Body>
       <Card.Footer>
         <Card.Text>{strInstructions}</Card.Text>
-        <AddDrink drink={props.cocktail} />
+        {favoriteButton}
       </Card.Footer>
     </Card>
   )

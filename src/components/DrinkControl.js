@@ -8,6 +8,7 @@ import RandomCocktail from './RandomCocktail';
 import AccountControl from './Account/AccountControl';
 import PasswordForgot from './Account/PasswordForgot';
 import Profile from './Account/Profile';
+import ViewFavorites from './ViewFavorites';
 import * as s from './SearchTypes';
 
 function DrinkControl() {
@@ -34,6 +35,9 @@ function DrinkControl() {
           </Route>
           <Route path="/account" exact>
             <AccountControl />
+          </Route>
+          <Route path='/view-favorites' exact>
+            <ViewFavorites />
           </Route>
           <Route path='/forgot-password' exact>
             <PasswordForgot />

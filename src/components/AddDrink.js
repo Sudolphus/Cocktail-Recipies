@@ -57,8 +57,6 @@ function AddDrink(props) {
       strDrinkMeasure14: drink.strMeasure14,
       strDrinkMeasure15: drink.strMeasure15,
     })
-    .then(() => console.log("Success!"))
-    .catch(error => console.log(error.message));
   }
 
   return (
