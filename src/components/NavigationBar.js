@@ -9,6 +9,7 @@ function NavigationBar(props) {
   const { authUser } = props;
 
   const userName = authUser ? <Nav.Link className='mr-auto'>{authUser.displayName}</Nav.Link> : null;
+  const profilePage = authUser ? <Nav.Link className='mr-auto' href='/profile'>Your Profile</Nav.Link> : null;
   const accountLink = authUser ? <Nav className='mr-auto'><SignOut /></Nav> : <Nav.Link href='/account' className='mr-auto'>Account</Nav.Link>;
 
   return (
@@ -24,6 +25,7 @@ function NavigationBar(props) {
       </Nav>
       <Nav className='justify-content-end'>
         {userName}
+        {profilePage}
         {accountLink}
       </Nav>
     </Navbar>
